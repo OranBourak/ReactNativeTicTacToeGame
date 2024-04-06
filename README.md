@@ -1,4 +1,4 @@
-# ReactNativeTicTacToeGame
+# ReactNativeTicTacToeGameForAndroid
 
 Part of full stack course
 
@@ -40,17 +40,3 @@ npm run android
 ```
 
 Make sure you have an Android emulator running or an Android device connected.
-
-Run on iOS:
-
-```bash
-npm run ios
-```
-
-Requires an iOS device or a running iOS simulator.
-
-Run on the web:
-
-```bash
-npm run web
-```
