@@ -8,6 +8,29 @@ import ReplayButton from '../components/ReplayButton';
 const App = () => {
   const [activePlayer, setActivePlayer] = useState('X');
   const [markers, setMarkers] = useState(Array(9).fill(null));
+  
+  useEffect(() => {
+    const winner = calculateWinner();
+    if (winner) {
+      Alert.alert(
+        "Game Over",
+        `Player ${winner} won the game!`,
+        [
+          { text: 'Play Again', onPress: resetMarkers },
+          { text: 'Cancel', onPress: () => console.log('Game not restarted') }
+        ]
+      );
+    } else if (markers.every(marker => marker !== null)) {
+      Alert.alert(
+        "Game Over",
+        "The game is a draw!",
+        [
+          { text: 'Play Again', onPress: resetMarkers },
+          { text: 'Cancel', onPress: () => console.log('Game not restarted') }
+        ]
+      );
+    }
+  }, [markers]);
 
   const markPosition = (position:number) => {
     if(markers[position] !== null) return // If already marked, return
