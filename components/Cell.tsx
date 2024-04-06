@@ -7,11 +7,23 @@ const windowWidth = Dimensions.get('window').width;
 interface CellProps {
   marker: string | null;
   onPress: () => void;
+  position: number;
 }
 
-const Cell = ({ marker, onPress }: CellProps) => {
+const Cell = ({ marker, onPress, position }: CellProps) => {
+  const isRightCell = (position % 3) === 2;
+  const isBottomCell = position >= 6;
+
+  const cellStyle = {
+    ...styles.cell,
+    borderRightWidth: isRightCell ? 0 : 6,
+    borderBottomWidth: isBottomCell ? 0 : 6,
+    borderTopWidth: position < 3 ? 0 : 6,
+    borderLeftWidth: (position % 3) === 0 ? 0 : 6,
+  };
+
   return (
-    <Pressable style={styles.cell} onPress={onPress}>
+    <Pressable style={cellStyle} onPress={onPress}>
       {marker === 'X' && <Image source={require('../assets/images/cross.png')} style={styles.icon} />}
       {marker === 'O' && <Image source={require('../assets/images/zero.png')} style={styles.icon} />}
     </Pressable>
@@ -25,8 +37,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRightWidth: 6,
-    borderBottomWidth: 6,
   },
   icon: {
     width: 62,

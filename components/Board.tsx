@@ -11,7 +11,7 @@ const Board = ({ markers, onCellPress }: BoardProps) => {
   return (
     <View style={styles.mainContainer}>
       {markers.map((marker, index) => (
-        <Cell key={index} marker={marker} onPress={() => onCellPress(index)} />
+        <Cell key={index} marker={marker} position={index} onPress={() => onCellPress(index)} />
       ))}
     </View>
   );
